@@ -1,0 +1,26 @@
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>id</th>
+            <th>nome</th>
+            <th>data de nascimento</th>
+            <th>CPF</th>
+            <th>email</th>
+            <th>endereco</th>
+            <th>comorbidades</th>
+            <th>senha</th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{usuario.id_usuario}}</td>
+            <td>{{usuario.nome}}</td>
+            <td>{{usuario.nascimento}}</td>
+            <td>{{usuario.cpf}}</td>
+            <td>{{usuario.email}}</td>
+            <td>{{usuario.endereco}}</td>
+            <td>{{usuario.doenca}}</td>
+            <td>{{usuario.password}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>

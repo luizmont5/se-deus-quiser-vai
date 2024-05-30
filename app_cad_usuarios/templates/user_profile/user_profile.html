@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Clinica Santa Emília de Rodat</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Clinica Santa Emília de Rodat</h1>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'user_profile' %}">Profile</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <h2>User Profile</h2>
+        <div class="user-info">
+            <p>Name: {{ user.username }}</p>
+            <p>Email: {{ user.email }}</p>
+        </div>
+        <h2>Your Appointments</h2>
+        <div class="appointments">
+            {% for appointment in appointments %}
+                <div class="appointment">
+                    <h3>{{ appointment.doctor }}</h3>
+                    <p>{{ appointment.specialty }}</p>
+                    <p>{{ appointment.date }} at {{ appointment.time }}</p>
+                    <a href="{% url 'cancel_appointment' appointment.id %}">Cancel Appointment</a>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

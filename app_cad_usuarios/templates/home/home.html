@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Clinica Santa Emília de Rodat</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Clinica Santa Emília de Rodat</h1>
+        <nav>
+            <a href="{% url 'logout' %}">Logout</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Available Appointments</h2>
+        <div class="appointments">
+            {% for appointment in appointments %}
+                <div class="appointment">
+                    <h3>{{ appointment.doctor }}</h3>
+                    <p>{{ appointment.specialty }}</p>
+                    <p>{{ appointment.date }} at {{ appointment.time }}</p>
+                    {% if not appointment.user %}
+                        <a href="{% url 'book_appointment' appointment.id %}">Book Appointment</a>
+                    {% else %}
+                        <p>Already booked by {{ appointment.user.username }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
