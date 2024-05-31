@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from .models import Usuario
 from django.shortcuts import render, redirect
+from .models import Usuario
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from .models import Appointment
+
+
 
 
 def cadastro(request):
@@ -67,3 +68,10 @@ def cancel_appointment(request, appointment_id):
     if appointment:
         appointment.cancel()
     return redirect('user_profile')
+
+def login_view(request):
+    return render(request, 'app_cad_usuarios/login.html')
+
+def existing_login_view(request):
+    # Lógica adicional aqui
+    return render(request, 'app_cad_usuarios/login.html')
